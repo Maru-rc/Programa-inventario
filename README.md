@@ -22,3 +22,7 @@ Producto: Manzana | Precio: $2.5 | cantidad: 4 | Total: $10.0
 
 ### Tecnologías usadas:
 -Python
+
+### Integrantes del grupo:
+-Manuel Rueda
+-Diego Gonzales
