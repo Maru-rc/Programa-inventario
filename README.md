@@ -1,9 +1,9 @@
-##Calculadora de Costo de Producto en Python
+# Programa inventario python
 
-#Descripción
+### Descripción
 Este programa en Python permite calcular el costo total de una compra. El usuario ingresa el nombre, precio y cantidad del producto, y el programa calcula el total.
 
-#Funcionalidad
+### Funcionalidad
 
 Solicita el nombre del producto.
 
@@ -13,12 +13,12 @@ Calcula el costo total.
 
 Muestra un resumen con la información.
 
-#Ejemplo
+### Ejemplo
 Ingresa el nombre del producto: Manzana
 Ingresa el precio del producto: 2.5
 Ingresa la cantidad que vas a llevar: 4
 
 Producto: Manzana | Precio: $2.5 | cantidad: 4 | Total: $10.0
 
-#Tecnologías usadas:
+### Tecnologías usadas:
 -Python
