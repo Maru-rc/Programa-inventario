@@ -25,4 +25,5 @@ Producto: Manzana | Precio: $2.5 | cantidad: 4 | Total: $10.0
 
 ### Integrantes del grupo:
 -Manuel Rueda
+
 -Diego Gonzales
