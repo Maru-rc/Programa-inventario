@@ -1,11 +1,22 @@
-#Todas las funciones hacen lo que su nombre dice
 def agregar_producto (inventario): 
-    nombre = input("\nIngresa el nombre del producto: ") 
-    for producto in inventario: #Ciclo for que recorre cada producto del inventario
-        if producto["nombre"] == nombre: #Esto es para verificar si el producto que se va a ingresar ya esta en el inventario
-            cantidad = int(input("Ingresa la cantidad que vas a llevar: ")) #Variable que guarda la cantidad de producto
-            producto ["cantidad"] += cantidad #Aca se suma la cantidad nueva con la anterior registrada
+    se_guardo = False
+    intentos_bucle = 0
+    while se_guardo == False:
+        if intentos_bucle == 3:
+            print("\nError, numero maximo de intentos alcanzado")
             return
+        nombre = input("\nIngresa el nombre del producto: ").strip()
+        if len(nombre) == 0:
+            print("El nombre no puede estar vacio")
+            intentos_bucle +=1
+            continue
+        else:
+            for producto in inventario: #Ciclo for que recorre cada producto del inventario
+                if producto["nombre"] == nombre: #Esto es para verificar si el producto que se va a ingresar ya esta en el inventario
+                    cantidad = int(input("Ingresa la cantidad que vas a llevar: ")) #Variable que guarda la cantidad de producto
+                    producto ["cantidad"] += cantidad #Aca se suma la cantidad nueva con la anterior registrada
+                    return
+        se_guardo = True
         
     intentos_bucle = 0 #Cantidad de veces que se ha intentado ingresar un dato y ha sucedido algun error
     se_guardo = False
@@ -114,6 +125,3 @@ def eliminar_producto(inventario):
           print("Producto eliminado")
           return
     print("Producto no encontrado")
-
-
-
