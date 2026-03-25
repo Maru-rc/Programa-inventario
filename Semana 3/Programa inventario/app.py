@@ -1,6 +1,6 @@
 import servicios 
 import archivos
-inventario = [] 
+inventario = [] #Este es el inventario donde se van a guardar todos los productos, los productos se guardan como diccionarios
 salir_bucle = 0 
 
 while salir_bucle == 0:
@@ -23,7 +23,7 @@ Hola, que quieres hacer?
         seguir_agregando = "si" 
         while seguir_agregando != "no": 
             servicios.agregar_producto(inventario) 
-            seguir_agregando = input("Quieres agregar otro producto? si/no: ") 
+            seguir_agregando = input("Quieres agregar otro producto? si/no: ").lower()
 
     elif opcion == "2":
         print("\nInventario")
@@ -50,6 +50,6 @@ Hola, que quieres hacer?
 
     elif opcion == "9":
         print("Chao")
-        salir_bucle = 1 
+        salir_bucle = 1
     else:
         print("Ingresa una opcion valida")
