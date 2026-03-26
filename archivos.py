@@ -10,31 +10,40 @@ def guardar_csv(inventario):
     Retorna:
     Nada
     """
-    opcion = input("¿Quieres usar el nombre de archivo por defecto 'Inventario.csv'? (si/no): ").lower()
     escogio_bien = False
     intentos_bucle = 0
+
     while escogio_bien == False:
         if intentos_bucle == 3:
             print("Error, numero maximo de intentos alcanzado")
             return
+        
+        opcion = input("¿Quieres usar el nombre de archivo por defecto 'Inventario.csv'? (si/no): ").lower()
         if opcion == "si":
             nombre_archivo = "Inventario.csv"
+            escogio_bien = True
+
         elif opcion == "no":
             nombre_archivo = input("Ingresa el nombre del archivo: ")
             nombre_archivo_partido = nombre_archivo.split(".")
+
             if nombre_archivo.count(".") < 1: #Si no puso ningun punto, osea que no definio el tipo de archivo, se define como csv
-                nombre_archivo += ".csv"
-                break
-            if nombre_archivo_partido[-1] != "csv": #Si llega a intentar guardar el archivo como algo diefernte a un csv, por ejemplo un json, se cambia y se define como csv
+                nombre_archivo = nombre_archivo + ".csv"
+                escogio_bien = True
+
+            elif nombre_archivo_partido[-1] != "csv": #Si llega a intentar guardar el archivo como algo diefernte a un csv, por ejemplo un json, se cambia y se define como csv
                 nombre_archivo_partido[-1] = "csv"
                 nombre_archivo = ".".join(nombre_archivo_partido)
+                escogio_bien =True
         else:
             print("Por favor escoge si o no")
             intentos_bucle += 1
+            
 
     if not os.path.isfile(nombre_archivo): 
         with open(nombre_archivo, "w") as archivo:
             archivo.write("Nombre,Precio,Cantidad")
+
     try:
         if len(inventario) == 0:
             print("No hay nada para guardar")
@@ -66,16 +75,19 @@ def cargar_csv (inventario):
     if nombre_archivo_partido[-1] != "csv": #Verifica si el archivo no es csv
         print("Solo se pueden cargar archivos csv")
         return
+    
     if not os.path.isfile(nombre_archivo): #Esto verifica si el archivo no existe
         print("El archivo no existe")
         return 
+    
     else:
         inventario_temporal = [] #esta lista va a tener los productos cargados desde el csv
         with open(nombre_archivo,"r") as archivo:
             filas = archivo.readlines() #En esta varaible se guarda lo que hay en el archivo 
-            if filas[0] != "nombre,precio,cantidad": #Esto es para verificar que el header sea valido, si no lo es no se guarda nada y vuelve al menu
+            if filas[0].strip() != "Nombre,Precio,Cantidad": #Esto es para verificar que el header sea valido, si no lo es no se guarda nada y vuelve al menu
                 print("No se pudo cargar el archivo porque tiene encabezado invalido")
                 return
+            
             contador_errores = 0
             for fila in filas[1:]: #Aca recorre cada fila del archivo, se empiza en 1 para volarse el header
                 producto_en_fila = fila.split(",") #Aca se divide por comas
